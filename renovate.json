@@ -14,7 +14,8 @@
       "matchDepNames": [
         "realm/SwiftLint",
         "ghcr.io/realm/swiftlint"
-      ]
+      ],
+      "minimumGroupSize": 2
     },
     {
       "matchDepNames": [
