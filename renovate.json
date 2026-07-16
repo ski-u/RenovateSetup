@@ -1,6 +1,38 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
-  ]
+    "config:recommended",
+    "customManagers:githubActionsVersions"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["mint"],
+      "enabled": false
+    },
+    {
+      "groupName": "SwiftLint",
+      "matchDepNames": [
+        "realm/SwiftLint",
+        "ghcr.io/realm/swiftlint"
+      ]
+    },
+    {
+      "matchDepNames": [
+        "ghcr.io/realm/swiftlint"
+      ],
+      "minimumReleaseAge": null
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)Mintfile$/"],
+      "matchStrings": [
+        "(?:^|\\n)\\s*(?<depName>[A-Za-z0-9_.-]+\\/[A-Za-z0-9_.-]+)\\s*@\\s*(?<currentValue>[^\\s#]+)"
+      ],
+      "datasourceTemplate": "github-tags",
+      "versioningTemplate": "semver-coerced"
+    }
+  ],
+  "minimumReleaseAge": "3 days"
 }
